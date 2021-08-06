@@ -26,6 +26,7 @@ fetch(url)
                 }
             }
             if (reach === 0){
+                $actualTemp.textContent = "cargando..."
 
                 location.reload();
 
