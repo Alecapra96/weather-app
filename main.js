@@ -20,9 +20,12 @@ fetch(url)
             for (let index = 0; index < array.length; index++) {
                 const element = array[index];
                 if (element._id === idCity){
+                    console.log(element.lid) // con esto puedo buscar en https://ws.smn.gob.ar/forecast/ el pronostico extendido
                      reach = 1;
                     console.log("Entre")
                     chargeInfo(element);
+                    console.log(idCity)
+                    fetchForecast();
                 }
             }
             if (reach === 0){
@@ -47,4 +50,11 @@ function chargeInfo(element){
                     }
 }
 
-       
+function fetchForecast(){
+    const urlForecast ="https://ws.smn.gob.ar/forecast/"
+    fetch(urlForecast)
+    .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+}
