@@ -1,8 +1,7 @@
 let array = [];
-let arrayForecast = [];
-const url =`https://ws.smn.gob.ar/map_items/weather`
-// const urlForecast ="https://ws.smn.gob.ar/forecast/"
 
+
+const url =`https://ws.smn.gob.ar/map_items/weather`
 let idCity = "609de837818e15902c7513f6"
 const $cityName = document.querySelector("#city-name");
 const $actualTemp = document.querySelector("#actual-temp");
@@ -15,12 +14,13 @@ const $date = document.querySelector("#date");
 const  $pressure = document.querySelector("#pressure")
 let reach = 0;
 let date;
-
+let months;
 
 fetch(url)
     .then(response => response.json())
         .then(data => {
             console.log(data);
+            changeBackground(months)
             array = data;
             for (let index = 0; index < array.length; index++) {
                 const element = array[index];
@@ -58,33 +58,43 @@ function chargeInfo(element){
                         $st.textContent = "Sensacion termica: "+element.weather.st + " C°"
                     }
 }
-//___________________________________________________
-// me di cuenta que esta desactualizado hace 2 años est parte de la api
-//___________________________________________________
-// function fetchForecast(idForecast){
-//     fetch(urlForecast)
-//     .then(response => response.json())
-//         .then(data => {
-    
-//             array = data;
-//             for (let index = 0; index < array.length; index++) {
-//                 const element = array[index];
-//                 if(element.location_id === idForecast){
-//                     console.log(element)
-//                     console.log("adentro")
-//                     reach = 2;
-               
-//                     Object.keys(element.forecast).forEach(key => 
-//                         console.log(element.forecast[key])
-//                         )
-//                 }
-//             }
-//             if (reach != 2){
-//                 $actualTemp.textContent = "cargando..."
-//                 location.reload();
-//             }
-//         })
-// }
+
+
+function changeBackground(months){
+    if (months === 11 || months === 12 || months === 1 || months === 2 ){
+        console.log("verano")
+        if (hours > "06:30" && hours < "21:00" ){
+            //Poner wallpaper verano de dia 
+        }else{
+            //poner wallpaper verano de noche
+        }
+    }
+    else if (months === 3 || months === 4 || months === 5  ){
+        console.log("otoño")
+        if (hours > "06:30" && hours < "21:00" ){
+            //Poner wallpaper verano de dia 
+        }else{
+            //poner wallpaper verano de noche
+        }
+    }
+    else if (months === 6 || months === 7 ){
+        console.log("invierno")
+        if (hours > "06:30" && hours < "21:00" ){
+            //Poner wallpaper verano de dia 
+        }else{
+            //poner wallpaper verano de noche
+        }
+    }
+    else if (months === 8 || months === 9 || months === 10 ){
+        console.log("primavera")
+        if (hours > "06:30" && hours < "21:00" ){
+            //Poner wallpaper verano de dia 
+        }else{
+            //poner wallpaper verano de noche
+        }
+    }
+
+}
 function dateTime(){
 var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
